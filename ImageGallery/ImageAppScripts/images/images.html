@@ -1,0 +1,63 @@
+﻿<div class="row">
+    <div class="panel panel-primary">
+        <div class="panel-heading clearfix">
+            <h4 class="panel-title pull-left" style="padding-top: 7.5px;">Image Gallery</h4>
+           
+        </div>
+       
+        <div class="panel-body" ng-if="loadingImage != true && noImages == false">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 movie" ng-repeat="image in Images ">
+                    <div class="panel panel-default">
+                        <div class="media">
+                            <a class="pull-left" ng-href="#/Images/{{image.ImageID}}"  title="View {{image.ImageName}} details">
+                                <img class="media-object" height="120" ng-src="data:image/jpeg;base64,{{image.ImageData}}" alt="" />
+                            </a>
+                            
+                            <div class="media-body">
+                                <h4 class="media-heading">{{image.ImageName}}</h4>
+                                Photographer: <strong>{{image.PhotographerName}}</strong>
+                                <br />
+                                Price: <strong>{{image.Price}}</strong>
+                                <br />
+
+                            </div>
+                        </div>
+                        <br /><br />
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="panel-footer"  ng-if="loadingImage != true && noImages == false">
+            <div class="text-center">
+                <custom-pager page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="search(page)"></custom-pager>
+               
+            </div>
+        </div>
+        <div ng-if="loadingImage">
+            <div class="col-xs-4"></div>
+            <div class="col-xs-4">
+                <i class="fa fa-refresh fa-4x fa-spin"></i> <label class="label label-primary">Loading Image data...</label>
+            </div>
+            <div class="col-xs-4"></div>
+        </div>
+        <div ng-if="noImages">
+            <div class="col-xs-4"></div>
+            <div class="col-xs-4">
+                <p class="text-center"><em>Get started with Image Gallery.. Head over to the upload Image form.</em></p>
+            </div>
+            <div class="col-xs-4"></div>
+        </div>
+    </div>
+</div>
+<script>
+    $(".fancybox").fancybox({
+        helpers: {
+            overlay: {
+                css: {
+                    'background': 'rgba(58, 42, 45, 0.95)'
+                }
+            }
+        }
+    });
+</script>

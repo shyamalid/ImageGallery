@@ -1,0 +1,102 @@
+﻿<div id="editImageWrapper">
+    <hr>
+    <div class="row" ng-if="!loadingImage">
+        <!-- left column -->
+        <div class="col-xs-3">
+            <div class="text-center">
+                <img ng-src="data:image/jpeg;base64,{{image.ImageData}}" class="avatar img-responsive" alt="avatar">
+                
+            </div>
+        </div>
+
+        <!-- edit form column -->
+        <div class="col-xs-9 personal-info">
+            <div class="alert alert-info alert-dismissable">
+                <a class="panel-close close" data-dismiss="alert">×</a>
+                <i class="fa fa-pencil-square-o"></i>
+                Edit <strong>{{image.ImageName}}</strong> photograph details. Make sure you fill all required fields.
+            </div>
+            <form class="form-horizontal" role="form"  ng-submit="UpdateImage()">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-xs-8">
+                            <label class="control-label">Image Name</label>
+                            <input class="form-control" name="Name" type="text" ng-model="image.ImageName"
+                                   validate-on="blur" required required-message="'Image Name is required'">
+                        </div>
+
+                        <div class="col-xs-6 col-sm-4 selectContainer">
+                            <label class="control-label">Location</label>
+                            
+                            <select ng-model="image.LocationId" class="form-control black" ng-options="location.ID as location.LocationName for location in locations" ng-value="location.ID"  required></select>
+                            <input type="hidden" name="ID" ng-value="image.Location" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <label class="control-label">Creation Date</label>
+                            <p class="input-group">
+
+                                <input type="text" class="form-control"
+                                       uib-datepicker-popup="{{format}}"
+                                       ng-model="image.CreationDate"
+                                       is-open="popup1.opened"
+                                       popup-placement="bottom-right"
+                                       datepicker-options="dateOptions"
+                                       ng-required="true"
+                                       close-text="Close"
+                                       alt-input-formats="altInputFormats"
+                                       show-button-bar="true"
+                                       close-on-date-selection="true" 
+                                       uib-
+                                       />
+
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </p>
+                        </div>
+
+                        <div class="col-xs-4">
+                            <label class="control-label">Image Price</label>
+                            <input class="form-control" type="number" min="0.01" step="0.01"  ng-model="image.Price" name="Price"
+                                   validate-on="blur" required required-message="'Price is required'">
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-4">
+                            <label class="control-label">Photographer Name</label>
+                            <input class="form-control" name="title" type="text" ng-model="image.PhotographerName"
+                                   validate-on="blur" required required-message="'Photographer Name is required'">
+                        </div>
+                        <div class="col-xs-6 col-sm-4">
+                            <label class="control-label">Email</label>
+                            <input class="form-control" name="title" type="email" ng-model="image.EmailId"
+                                   validate-on="blur" required required-message="'EmailId is required'">
+                        </div>
+                    </div>
+                </div>
+
+                
+                <br />
+                <div class="form-group col-xs-4">
+                    <label class="control-label"></label>
+                    <div class="">
+                        <input type="submit" class="btn btn-primary" value="Update" />
+                        <span></span>
+                        <a class="btn btn-default" ng-href="#/Images/{{image.ImageID}}">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr>
+</div>

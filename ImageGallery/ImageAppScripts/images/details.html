@@ -1,0 +1,40 @@
+﻿<hr />
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h5>{{image.ImageName}}</h5>
+            </div>
+            <div class="panel-body" ng-if="!loadingImage">
+                <div class="media">
+                    <a class="pull-right" ng-href="#/Images/{{image.ImageID}}" title="View {{image.ImageName}} details">
+                        <img class="media-object" height="120" ng-src="data:image/jpeg;base64,{{image.ImageData}}" alt="" />
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">{{image.ImageName}}</h4>
+                        Created On: <label style="MM/dd/yyyy">{{image.CreationDate | date:'dd-MMMM-yyyy'}}</label><br />
+                        Photographed by: <label>{{image.PhotographerName}}</label><br />
+                        Email: <label>{{image.Email}}</label><br />
+                        Price: <span class="currencyinput">$<label>{{image.Price}}</label></span><br />
+
+</div>
+                </div>
+            </div>
+            <div class="panel-footer clearfix" ng-if="!loadingImage">
+                <div class="pull-right">
+                    <a ng-click="deleteImage()" class="btn btn-default">Delete photograph <i class="fa fa-pencil-square pull-right"></i></a>
+                    <a ng-href="#/Images/edit/{{image.ImageID}}" class="btn btn-default">Edit photograph <i class="fa fa-pencil-square pull-right"></i></a>
+                </div>
+            </div>
+            <div ng-if="loadingImage">
+                <div class="col-xs-4"></div>
+                <div class="col-xs-4">
+                    <i class="fa fa-refresh fa-4x fa-spin"></i> <label class="label label-primary">Loading Image data...</label>
+                </div>
+                <div class="col-xs-4"></div>
+            </div>
+        </div>
+
+    </div>
+    
+</div>

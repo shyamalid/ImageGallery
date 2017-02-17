@@ -1,0 +1,33 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html ng-app="imageApp">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    
+    <!--application script files for angular components-->
+</head>
+<body ng-controller="rootCtrl">
+    
+        <top-bar></top-bar>
+        <div class="row-offcanvas row-offcanvas-left">
+            
+    <label></label>
+            <div id="main">
+                <div class="col-md-12">
+                    <div class="page {{ pageClass }}" ng-view></div>
+                </div>
+            </div>
+        </div><!--/row-offcanvas -->
+        @Scripts.Render("~/bundles/angular")
+        @Scripts.Render("~/bundles/imageApp")
+
+    </body>
+</html>
