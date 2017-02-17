@@ -8,12 +8,12 @@ namespace ImageManager.DAL
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly ImageDBContext _context;
+        private readonly ImageDbContext _context;
         public IImagesRepository Images { get; private set; }
         public ILocationsRepository Locations { get; private set; }
         public UnitOfWork()
         {
-            _context = new ImageDBContext();
+            _context = new ImageDbContext();
             Images = new ImagesRepository(_context);
             Locations = new LocationsRepository(_context);
 

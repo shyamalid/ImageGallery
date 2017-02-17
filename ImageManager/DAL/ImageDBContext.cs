@@ -5,13 +5,13 @@ using System;
 
 namespace ImageManager.DAL
 {
-    public class ImageDBContext:DbContext
+    public class ImageDbContext:DbContext
     {
-        public ImageDBContext()
+        public ImageDbContext()
             : base("name=ImageContext")
         {
             
-            Database.SetInitializer(new ImageInitalizeDB());
+            Database.SetInitializer(new ImageInitalizeDb());
             this.Configuration.LazyLoadingEnabled = false;
            
         }

@@ -8,7 +8,7 @@ namespace ImageManager.DAL.Repositories
 {
     public class LocationsRepository:Repository<Location>, ILocationsRepository
     {
-        public LocationsRepository(ImageDBContext context) 
+        public LocationsRepository(ImageDbContext context) 
             : base(context)
         {
         }
@@ -19,9 +19,9 @@ namespace ImageManager.DAL.Repositories
                  .OrderBy(c => c.LocationName)
                  .ToList();
         }
-        public ImageDBContext ImageContext
+        public ImageDbContext ImageContext
         {
-            get { return Context as ImageDBContext; }
+            get { return Context as ImageDbContext; }
         }
     }
 }

@@ -3,10 +3,10 @@ using System.Data.Entity;
 
 namespace ImageManager.DAL
 {
-    public class ImageInitalizeDB: DropCreateDatabaseIfModelChanges<ImageDBContext>
+    public class ImageInitalizeDb: DropCreateDatabaseIfModelChanges<ImageDbContext>
     {
          
-        protected override void Seed(ImageDBContext context)
+        protected override void Seed(ImageDbContext context)
         {
             context.Locations.Add(new Location {LocationName="Austin" });
             context.Locations.Add(new Location { LocationName = "Dallas" });

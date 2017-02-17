@@ -8,7 +8,7 @@ namespace ImageManager.DAL.Repositories
 {
     public class ImagesRepository:Repository<ImageMaster> ,IImagesRepository
     {
-        public ImagesRepository(ImageDBContext context) 
+        public ImagesRepository(ImageDbContext context) 
             : base(context)
         {
         }
@@ -26,9 +26,9 @@ namespace ImageManager.DAL.Repositories
 
        
 
-        public ImageDBContext ImageContext
+        public ImageDbContext ImageContext
         {
-            get { return Context as ImageDBContext; }
+            get { return Context as ImageDbContext; }
         }
     }
 }

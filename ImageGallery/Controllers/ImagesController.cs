@@ -12,7 +12,7 @@ namespace ImageGallery.Controllers
 {
     public class ImagesController : ApiController
     {
-        private readonly UnitOfWork unitOfWork = new UnitOfWork();
+        private readonly UnitOfWork _unitOfWork = new UnitOfWork();
         #region Get Verbs
 
         //// GET api/<controller>
@@ -28,10 +28,10 @@ namespace ImageGallery.Controllers
             int currentPage = page;
             int currentPageSize = pageSize;
             
-                int totalCount = unitOfWork.Images.GetAll().Count();
+                int totalCount = _unitOfWork.Images.GetAll().Count();
                 int totalPages = (int)(Math.Ceiling((decimal)totalCount / currentPageSize));
 
-                var images = unitOfWork.Images.GetImages(currentPage, currentPageSize);
+                var images = _unitOfWork.Images.GetImages(currentPage, currentPageSize);
 
                 PaginatedImage pagedSet = new PaginatedImage()
                 {
@@ -50,7 +50,7 @@ namespace ImageGallery.Controllers
         [HttpGet]
         public ImageMaster ImageData(int id)
         {
-            ImageMaster image = unitOfWork.Images.Get(id);
+            ImageMaster image = _unitOfWork.Images.Get(id);
             if (image == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
@@ -65,11 +65,11 @@ namespace ImageGallery.Controllers
         [HttpPost]
         public HttpResponseMessage Post(ImageMaster item)
         {
-            unitOfWork.Images.Add(item);
-            unitOfWork.Complete();
+            _unitOfWork.Images.Add(item);
+            _unitOfWork.Complete();
             var response = Request.CreateResponse<ImageMaster>(HttpStatusCode.Created, item);
 
-            string uri = Url.Link("DefaultApi", new { id = item.ImageID });
+            string uri = Url.Link("DefaultApi", new { id = item.ImageId });
             response.Headers.Location = new Uri(uri);
             return response;
         }
@@ -78,9 +78,9 @@ namespace ImageGallery.Controllers
         #region PUT Verbs
         public void Put( ImageMaster image)
         {
-            int id = image.ImageID ;
+            int id = image.ImageId ;
 
-            var query = unitOfWork.Images.Find(s => s.ImageID == id);
+            var query = _unitOfWork.Images.Find(s => s.ImageId == id);
             foreach (var item in query)
             {
                 item.ImageName = image.ImageName;
@@ -89,7 +89,7 @@ namespace ImageGallery.Controllers
                 item.EmailId = image.EmailId;
             }
 
-            unitOfWork.Complete();
+            _unitOfWork.Complete();
         }
 
         #endregion
@@ -97,14 +97,14 @@ namespace ImageGallery.Controllers
         #region Delete Verbs
         public void DeleteImage(int id)
         {
-            ImageMaster item = unitOfWork.Images.Get(id);
+            ImageMaster item = _unitOfWork.Images.Get(id);
             if (item == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
 
-            unitOfWork.Images.Remove(item);
-            unitOfWork.Complete();
+            _unitOfWork.Images.Remove(item);
+            _unitOfWork.Complete();
         }
         #endregion
     }

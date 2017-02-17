@@ -6,7 +6,7 @@ namespace ImageManager.Models
     public class ImageMaster
     {[Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ImageID { get; set; }
+        public int ImageId { get; set; }
         [Required]
         [MaxLength(50)]
         public string ImageName { get; set; }
